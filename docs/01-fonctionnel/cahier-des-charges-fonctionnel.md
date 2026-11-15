@@ -6,14 +6,14 @@
 
 ## Sommaire
 1. [Contexte](#1-contexte)
-2. [Analyse de l'existant](#2-analyse_de_l'existant)
-3. [Besoins et Objectifs](#3-besoins_et_objectifs)
-4. [Périmètre](#4-perimetre)
-5. [Acteurs](#5-acteurs)
-6. [Exigences Fonctionnelles](#6-exigences_fonctionnelles)
-7. [Exigences non fonctionnelles](#7-exigences_non_fonctionnelles)
+2. [Analyse de l'existant](#2-analyse-de-lexistant)
+3. [Besoins et Objectifs](#3-besoins-et-objectifs)
+4. [Périmètre](#4-périmètre)
+5. [Acteurs (V1)](#5-acteurs-v1)
+6. [Exigences Fonctionnelles](#6-exigences-fonctionnelles)
+7. [Exigences non fonctionnelles](#7-exigences-non-fonctionnelles)
 8. [User Stories](#8-user-stories)
-9. [Règles de gestion](#8-regles_de_gestion)
+9. [Règles de gestion (V1)](#9-règles-de-gestion-v1)
 10. [Validation](#10-validation)
 ---
 
@@ -150,10 +150,21 @@ Les besoins listés dans la partie **Besoins du Client**
 |---|---|---|---|---|---|---|
 | US-01	| | | | | | |				
 
-## 9. Règles de gestion
+## 9. Règles de gestion (V1)
 | N° | Règle |
 |---|---|
-| RG-01	| À compléter |
+| RG-01	| Une demande ne peut porter sur des dates disponibles |
+| RG-02	| La chambre supplémentaire ne peut être louée qu'avec un gîte |
+| RG-03	| La date de départ doit être postérieure à la date d'arrivée |
+| RG-04	| Un séjour est d'une durée minimum de deux nuitées |
+| RG-05	| Un séjour est d'une durée maximum de 21 nuitées |
+| RG-06	| Une demande a un statut: nouvelle, traitée, acceptée ou refusée |
+| RG-07	| Le prix affiché est une estimation et ne vaut pas confirmation |
+| RG-08	| Il ne peut y avoir que 5 personnes par gîtes et 2 personnes dans la chambre |
+| RG-09	| Le ménage et la location des draps sont inclus dans le prix affiché |
+| RG-10	| La taxe de séjour n'apparait pas dans le prix affiché |
+| RG-11	| La taxe de séjour calculée est déterminée à la réservation |
+| RG-12	| Seul l'administrateur peut modifier les tarifs, les périodes et les informations des gîtes|
 
 Règles tarifaires : voir regles-tarifaires.md.
 
