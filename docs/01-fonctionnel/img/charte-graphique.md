@@ -3,7 +3,7 @@
 > Cartes : [#4](https://github.com/Milie07/gites-de-fontbonne/issues/4)
 
 ## Intentions
-Ambiance, valeurs à transmettre.
+Ambiance, valeurs à transmettre.  
 
 ## Logo
 
