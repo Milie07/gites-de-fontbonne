@@ -9,12 +9,14 @@
 2. [Analyse de l'existant](#2-analyse-de-lexistant)
 3. [Besoins et Objectifs](#3-besoins-et-objectifs)
 4. [Périmètre](#4-périmètre)
-5. [Acteurs (V1)](#5-acteurs-v1)
-6. [Exigences Fonctionnelles (V1)](#6-exigences-fonctionnelles-v1)
+5. [Acteurs (v1)](#5-acteurs-v1)
+6. [Exigences Fonctionnelles (v1)](#6-exigences-fonctionnelles-v1)
 7. [Exigences non fonctionnelles](#7-exigences-non-fonctionnelles)
-8. [Règles de gestion (V1)](#8-règles-de-gestion-v1)
+8. [Règles de gestion (v1)](#8-règles-de-gestion-v1)
 9. [User Stories](#9-user-stories)
-10. [Validation](#10-validation)
+10. [Diagrammes](#10-diagrammes)
+11. [Validation](#11-validation)
+    
 ---
 
 ## 1. Contexte
@@ -137,7 +139,7 @@ Les besoins listés dans la partie **Besoins du Client**
 
 ---
 
-## 5. Acteurs (V1)
+## 5. Acteurs (v1)
 | Acteur	| Description |
 |---|---|
 | **Visiteur**	| Personne qui consulte le site : découvre les gîtes, vérifie les disponibilités, estime un prix, envoie une demande |
@@ -147,7 +149,7 @@ Les besoins listés dans la partie **Besoins du Client**
 
 [↑ Haut de page](#cahier-des-charges-fonctionnel)
 
-## 6. Exigences fonctionnelles (V1)
+## 6. Exigences fonctionnelles (v1)
 
 | N° | Domaine | Exigence | Priorité |
 |---|---|---|---|
@@ -161,7 +163,7 @@ Les besoins listés dans la partie **Besoins du Client**
 | EX-08 | Disponibilités | Le visiteur peut rechercher les logements disponibles pour des dates données. | S |
 | EX-09 | Disponibilités | Le site importe automatiquement les réservations Airbnb et Abritel de chaque gîte. | M |
 | EX-10 | Disponibilités | Le site exporte ses propres blocages vers Airbnb et Abritel. | S |
-| EX-11 | Disponibilités | L'administrateur peut renseigner les adresses iCal fournies par chaque plateforme pour chaque gîte. | M |
+| EX-11 | Disponibilités | Les adresses iCal des gîtes sont configurées en dehors du code source (variables d'environnement) | M |
 | EX-12 | Disponibilités | L'administrateur peut bloquer et débloquer des dates pour chaque logement. | M |
 | EX-13 | Tarifs | Le visiteur peut obtenir une estimation du prix pour un ou plusieurs logements et des dates choisis. | M |
 | EX-14 | Tarifs | L'administrateur peut gérer les tarifs et les périodes tarifaires. | M |
@@ -199,7 +201,7 @@ Les besoins listés dans la partie **Besoins du Client**
 | ENF-13 | Sécurité | Les mots de passe sont hachés et les tentatives de connexion sont limitées. | Tests de sécurité | 2 |
 | ENF-13b | Sécurité | Les formulaires sont protégés contre le CSRF et limités en nombre d'envois, avec une protection contre les robots. | Tests de sécurité | 2 |
 | ENF-13c | Sécurité | Les requêtes en base utilisent des requêtes préparées (protection contre l'injection SQL) et les contenus affichés sont échappés (protection contre le XSS). | Tests de sécurité, relecture du code | 2 |
-| ENF-14 | Sécurité | Aucun secret (mot de passe, clé) n'apparaît dans le dépôt public. | Vérification du dépôt | 2 |
+| ENF-14 | Sécurité | Aucun secret (mot de passe, clé, ical) n'apparaît dans le dépôt public. | Vérification du dépôt | 2 |
 | ENF-15 | Référencement | Chaque page a un titre et une méta-description uniques. | Audit SEO | 6 |
 | ENF-16 | Référencement | Les anciennes adresses du site redirigent vers les nouvelles (redirection 301). | Test des URL du plan de référencement | 6 |
 | ENF-17 | Référencement | Le site fournit un sitemap.xml, un robots.txt et des données structurées. | Search Console, outil de test Google | 6 |
@@ -214,7 +216,7 @@ Les besoins listés dans la partie **Besoins du Client**
 
 [↑ Haut de page](#cahier-des-charges-fonctionnel)
 
-## 8. Règles de gestion (V1)
+## 8. Règles de gestion (v1)
 | N° | Règle |
 |---|---|
 | RG-01 | Une demande porte sur un ou plusieurs gîtes. |
@@ -222,18 +224,22 @@ Les besoins listés dans la partie **Besoins du Client**
 | RG-03 | Une demande ne peut porter que sur des dates disponibles pour tous les logements demandés. |
 | RG-04 | Un gîte est indisponible s'il est réservé sur une plateforme ou bloqué par l'administrateur. La chambre, absente des plateformes, n'est bloquée que par l'administrateur. |
 | RG-05 | La date de départ doit être postérieure à la date d'arrivée. |
-| RG-06 | Un séjour dure au minimum 2 nuits, et au minimum 7 nuits en juillet et en août. |
-| RG-07 | Un séjour dure au maximum 21 nuits. |
-| RG-08 | Un gîte accueille au maximum 5 personnes, bébés non compris (lits bébé disponibles). |
-| RG-09 | La chambre supplémentaire accueille au maximum 2 personnes, bébés non compris. |
-| RG-10 | Une demande a un statut : nouvelle, traitée, acceptée ou refusée. |
-| RG-11 | Les tarifs sont à la nuitée sans ménage ni location de draps |
-| RG-12 | Le prix affiché lors de la sélection de dates est une estimation et ne vaut pas confirmation. |
-| RG-13 | Le ménage et la location des draps sont inclus dans le prix affiché lors de la sélection de dates. |
-| RG-14 | Le prix affiché n'inclut pas la taxe de séjour ; une mention l'indique. |
-| RG-15 | La taxe de séjour est calculée à la réservation, selon le nombre de personnes et de nuits. |
-| RG-16 | Seul l'administrateur peut modifier les tarifs, les périodes tarifaires, les blocages et les informations des logements. |
-| RG-17 | (à préciser) Durée de vie d'une demande : 7 jours. |
+| RG-06 | LUne demande ne peut porter que sur des dates futures. |
+| RG-07 | Un séjour dure au minimum 2 nuits, s'il comprend au moins une nuit de la période Vacances d'été, il dure au minimum 7 nuits. |
+| RG-08 | Une arrivée pendant la périodes Vacances d'été se fait le samedi uniquement. |
+| RG-09| Un départ pendant la périodes Vacances d'été se fait le samedi uniquement. |
+| RG-10 | Chaque nuit est facturée au tarif de la période qui contient sa date ; Un séjour à cheval sur deux périodes cumule les deux tarifs. |
+| RG-11 | Un séjour dure au maximum 21 nuits. |
+| RG-12 | Un gîte accueille au maximum 5 personnes, bébés non compris (lits bébé disponibles). |
+| RG-13 | La chambre supplémentaire accueille au maximum 2 personnes, bébés non compris. |
+| RG-14 | Une demande a un statut : nouvelle, traitée, acceptée ou refusée. |
+| RG-15 | Les tarifs sont à la nuitée sont sans ménage ni location de draps. |
+| RG-16 | Le prix affiché lors de la sélection de dates est une estimation et ne vaut pas confirmation. |
+| RG-17 | Le ménage et la location des draps sont inclus dans le prix affiché lors de la sélection de dates. |
+| RG-18 | Le prix affiché n'inclut pas la taxe de séjour ; une mention l'indique. |
+| RG-19 | La taxe de séjour est calculée à la réservation, selon le nombre de personnes et de nuits. |
+| RG-20 | Seul l'administrateur peut modifier les tarifs, les périodes tarifaires, les blocages et les informations des logements. |
+| RG-21 | La durée de vie d'une demande est de 7 jours. |
 
 Règles tarifaires : voir regles-tarifaires.md.
 
@@ -257,9 +263,8 @@ Règles tarifaires : voir regles-tarifaires.md.
 | US-12	| Administrateur | Répondre aux demandes de visiteurs | S | EX-20 |
 | US-13 | Administrateur | Gérer les tarifs et les périodes tarifaires | M | EX-14 |
 | US-14 | Administrateur | Modifier les textes et les photos des logements et des espaces communs | M | EX-05 |
-| US-15 | Administrateur | Configurer la synchronisation iCal de chaque gîte | M | EX-11 |
-| US-16 | Administrateur | Bloquer et débloquer des dates pour un logement | M | EX-12 |
-| US-17 | Administrateur | Transmettre les dates bloquées à Airbnb et Abritel | S | EX-10 |
+| US-15 | Administrateur | Bloquer et débloquer des dates pour un logement | M | EX-12 |
+| US-16 | Administrateur | Transmettre les dates bloquées à Airbnb et Abritel | S | EX-10 |
 
    ### 9.2 User stories détaillées
 #### US-01 : Consulter les informations des logements et des activités
@@ -358,14 +363,107 @@ Fonctionnalité: Consulter les disponibilités
 3. Si les dates choisies chevauchent des dates bloqués ou indisponibles, un message s'affiche pour dire que la réservation sur ces dates n'est pas possible.
 4. Si les dates choisies sont disponibles, la réservation est possible.
 
-
-```
 [↑ Haut de page](#cahier-des-charges-fonctionnel)
 
 ---
 
+## 10. Diagrammes
+  ### 10.1 Diagramme de cas d'utilisation #3
 
-## 10. Validation
+```mermaid
+flowchart LR
+    %% 1. Acteurs principaux (à gauche)
+    Visiteur((Visiteur))
+    Administrateur((Administrateur))
+    Horloge((Horloge))
+
+    %% 2. Système (au centre)
+    subgraph Système Gîtes de Fontbonne
+        UC1([Consulter les informations légales])
+        UC2([Rechercher un logement à une date donnée])
+        UC3([Consulter le calendrier de chaque logment])
+        UC4([Consulter les informations des logement, tarifs et activités])
+        UC5([Consulter les demandes])
+        UC6([Bloquer / Débloquer les dates])
+        UC7([Modifier les informations des gîtes et espaces])
+        UC8([Modifier les tarifs et les périodes tarifaires])
+        UC9([Consulter les statistiques de fréquentation du site])
+        UC10([Importer les réservations des plateformes])
+        UC11([Envoyer une demande d'information ou réservation])
+        UC12([Obtenir une estimation de prix])
+        UC13([Traiter une demande])
+        UC14([Répondre à une demande])
+        UC15([Se connecter])
+        UC16([Fournir le calendrier du site])
+    end
+
+    %% 3. Acteurs secondaires / systèmes externes (à droite)
+    Serveur-Mail((Serveur Mail))
+    Plateformes-AirBnB-et-Abritel((Plateformes AirBnB et Abritel))
+
+    %% Liens Gauche
+    Visiteur --- UC1
+    Visiteur --- UC2
+    Visiteur --- UC3
+    Visiteur --- UC4
+    Visiteur --- UC11
+    Administrateur --- UC15
+    Administrateur --- UC5
+    Administrateur --- UC6
+    Administrateur --- UC7
+    Administrateur --- UC8
+    Administrateur --- UC9
+    Horloge --- UC10
+
+
+    %% Relations internes
+    UC12 -.->|"<<extend>>"| UC2 
+    UC12 -.->|"<<extend>>"| UC3 
+    UC13 -.->|"<<extend>>"| UC5 
+    UC14 -.->|"<<extend>>"| UC5 
+    UC5 -.->|"<<include>>"| UC15
+    UC6 -.->|"<<include>>"| UC15
+    UC7 -.->|"<<include>>"| UC15
+    UC8 -.->|"<<include>>"| UC15
+    UC9 -.->|"<<include>>"| UC15
+
+    %% Liens droite
+    UC11 --- Serveur-Mail
+    UC10 --- Plateformes-AirBnB-et-Abritel
+    UC16 --- Plateformes-AirBnB-et-Abritel
+
+```
+
+  ### 10.2 Diagramme de séquence 
+**Demande de réservation** 
+
+```mermaid
+sequenceDiagram
+    actor V as Visiteur
+    participant S as Site
+    participant BDD as Base de Données
+    participant M as Serveur Mail
+    actor A as Administrateur
+
+    V->>S: Remplit et envoie le formulaire
+    S->>S: Vérifie les règles de gestion
+    alt Données invalides ou dates indisponibles
+        S-->>V: Affiche un message d'erreur
+    else Données valides
+        S->>BDD: Enregistre la demande (statut « nouvelle »)
+        S->>M: Envoie la confirmation au visiteur
+        M-->>V: Email de confirmation
+        S->>M: Envoie la notification à l'Administrateur
+        M-->>A: Email de notification
+        S-->>A: Affiche « Votre demande a bien été envoyée »
+    end
+    A->>S: Consulte la demande dans l'espace Administration
+    S->>BDD: Lit la demande
+    S-->>A: Affiche la demande
+
+```
+
+## 11. Validation
 | Date |	Validé par	| Remarques |
 |---|---|---|
 | | | |
